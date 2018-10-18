@@ -4,27 +4,13 @@ class Card extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {data: null}
-    }
-
-    componentDidMount() {
-        const that = this
-        fetch(this.props.url).then(response => response.json()).then(
-            data => {
-                that.setState({data})
-            }
-
-        )
     }
 
     render(){
-        let name = null
-        if(this.state.data != null){
-           name = this.state.data[0].name
-        }
         return (
             <div>
-                {name}
+                <h1>{this.props.ship.name}</h1>
+                <h2>{this.props.ship.faction}</h2>
             </div>
         )
     }

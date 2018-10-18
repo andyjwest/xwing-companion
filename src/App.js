@@ -1,28 +1,52 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Card from './Card'
+import {extract} from "./githubApiParser";
+import Ship from "./Ship";
+import Ships from "./Ships";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            actions: [],
+            conditions: [],
+            damageDeck: [],
+            factions: [],
+            ships: [],
+            stats: [],
+            upgrades: [],
+            factionFilter: null
+        }
+    }
+
+    componentWillMount() {
+        extract("actions", (data)=> this.setState({actions: this.state.actions.concat(data)}))
+        extract("conditions", (data)=> this.setState({conditions: this.state.conditions.concat(data)}))
+        extract("damage-decks", (data)=> this.setState({damageDeck: this.state.damageDeck.concat(data)}))
+        extract("factions", (data)=> this.setState({factions: this.state.factions.concat(data)}))
+        extract("pilots", (data)=> this.setState({ships: this.state.ships.concat(data)}))
+        extract("stats", (data)=> this.setState({stats: this.state.stats.concat(data)}))
+        extract("upgrades", (data)=> this.setState({upgrades: this.state.upgrades.concat(data)}))
+    }
+
+    updateFaction(event){
+        this.setState({factionFilter: event.target.value})
+    }
+
+    render() {
+        let factions = this.state.factions.map(faction =>
+            <option selected={this.state.factionFilter === faction.name}>{faction.name}</option>)
+        return (
+            <div>
+                <select onChange={this.updateFaction}>
+                    {factions}
+                </select>
+                <Ships ships={this.state.ships} factions={this.state.factions}/>
+            </div>
+        );
+    }
 }
 
 export default App;
