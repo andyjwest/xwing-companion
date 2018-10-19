@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Rebel Alliance",
+    "xws": "rebel-alliance",
+    "ffg": 1
+  },
+  {
+    "name": "Galactic Empire",
+    "xws": "galactic-empire",
+    "ffg": 2
+  },
+  {
+    "name": "Scum and Villainy",
+    "xws": "scum-and-villainy",
+    "ffg": 3
+  },
+  {
+    "name": "Resistance",
+    "xws": "resistance"
+  },
+  {
+    "name": "First Order",
+    "xws": "first-order"
+  }
+]

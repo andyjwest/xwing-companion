@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
+import Dial from "./Dial";
 
-class Card extends Component {
-
-    constructor(props) {
-        super(props)
-    }
+class Ship extends Component {
 
     render(){
         return (
             <div>
                 <h1>{this.props.ship.name}</h1>
                 <h2>{this.props.ship.faction}</h2>
+                <Dial dial={this.props.ship.dial}/>
             </div>
         )
     }
 }
 
-export default Card;
+export default Ship;

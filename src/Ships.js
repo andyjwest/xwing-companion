@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import Ship from "./Ship";
 
-class Card extends Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {selectedFaction:"Rebel Alliance"}
-    }
+class Ships extends Component {
 
     render(){
-        let pilots = this.props.ships.filter(pilot=>pilot.faction === this.state.selectedFaction).map(pilot => <Ship ship={pilot}/>)
+        let pilots = this.props.ships.map(ship => <Ship key={ship.xws} ship={ship}/>)
 
         return (
             <div>
@@ -19,4 +14,4 @@ class Card extends Component {
     }
 }
 
-export default Card;
+export default Ships;

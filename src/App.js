@@ -1,34 +1,26 @@
 import React, {Component} from 'react';
 import './App.css';
-import Card from './Card'
-import {extract} from "./githubApiParser";
-import Ship from "./Ship";
 import Ships from "./Ships";
+import actions from './data/actions/actions.json'
+import factions from './data/factions/factions'
+import shipsData from './data/pilots/ships';
 
 class App extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            actions: [],
+            actions: actions,
             conditions: [],
             damageDeck: [],
-            factions: [],
-            ships: [],
+            factions: factions,
+            ships: shipsData,
             stats: [],
             upgrades: [],
-            factionFilter: null
-        }
-    }
+            factionFilter: factions[0].xws
+        };
 
-    componentWillMount() {
-        extract("actions", (data)=> this.setState({actions: this.state.actions.concat(data)}))
-        extract("conditions", (data)=> this.setState({conditions: this.state.conditions.concat(data)}))
-        extract("damage-decks", (data)=> this.setState({damageDeck: this.state.damageDeck.concat(data)}))
-        extract("factions", (data)=> this.setState({factions: this.state.factions.concat(data)}))
-        extract("pilots", (data)=> this.setState({ships: this.state.ships.concat(data)}))
-        extract("stats", (data)=> this.setState({stats: this.state.stats.concat(data)}))
-        extract("upgrades", (data)=> this.setState({upgrades: this.state.upgrades.concat(data)}))
+        this.updateFaction = this.updateFaction.bind(this)
     }
 
     updateFaction(event){
@@ -37,13 +29,13 @@ class App extends Component {
 
     render() {
         let factions = this.state.factions.map(faction =>
-            <option selected={this.state.factionFilter === faction.name}>{faction.name}</option>)
+            <option key={faction.xws} value={faction.xws}>{faction.name}</option>)
         return (
             <div>
-                <select onChange={this.updateFaction}>
-                    {factions}
+                <select onChange={this.updateFaction} value={this.state.factionFilter}>
+                    {factions.length === 0 ? <option/>: factions}
                 </select>
-                <Ships ships={this.state.ships} factions={this.state.factions}/>
+                <Ships ships={this.state.ships.find(factionCollection => factionCollection.faction === this.state.factionFilter).ships}/>
             </div>
         );
     }
