@@ -4,6 +4,12 @@ import Ships from "./Ships";
 import actions from './data/actions/actions.json'
 import factions from './data/factions/factions'
 import shipsData from './data/pilots/ships';
+import {library} from '@fortawesome/fontawesome-svg-core'
+import { faArrowLeft, faArrowRight, faArrowUp, faArrowDown, faStop, faUndo} from '@fortawesome/free-solid-svg-icons'
+import { faRebel, faEmpire } from '@fortawesome/free-brands-svg-icons'
+
+
+library.add(faArrowDown, faArrowUp, faArrowRight, faArrowLeft, faStop, faEmpire, faRebel, faUndo);
 
 class App extends Component {
 
@@ -21,6 +27,7 @@ class App extends Component {
         };
 
         this.updateFaction = this.updateFaction.bind(this)
+
     }
 
     updateFaction(event){

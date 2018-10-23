@@ -1,20 +1,26 @@
 import pilots from './data/pilots/galactic-empire/galactic-empire'
 const referenceMap = new Map([
-    ['A', {direction: 'Left', type: 'Reverse Bank'}],
-    ['E', {direction: "Left", type: "Tallon Roll"}],
-    ['L', {direction: "Left", type: "Segnor's Loop"}],
-    ['T', {direction: "Left", type: "Turn"}],
-    ['B', {direction: "Left", type: "Bank"}],
-    ['F', {direction: null, type: "Straight"}],
-    ['S', {direction: null, type: "Reverse Straight"}],
-    ['N', {direction: "Right", type: "Bank"}],
-    ['Y', {direction: "Right", type: "Turn"}],
-    ['P', {direction: "Right", type: "Segnor's Loop"}],
-    ['R', {direction: "Right", type: "Tallon Roll"}],
-    ['D', {direction: "Right", type: "Reverse Bank"}],
-    ['K', {direction: null, type: "Koiogran Turn"}],
-    ['O', {direction: null, type: "Stationary"}]
+    ['A', {direction: 'Left', type: 'Reverse Bank', faIconName: 'arrow-down', iconRotation: 'rotate(45deg)'}],
+    ['E', {direction: "Left", type: "Tallon Roll", faIconName: 'arrow-left'}],
+    ['L', {direction: "Left", type: "Segnor's Loop", faIconName: 'arrow-left'}],
+    ['T', {direction: "Left", type: "Turn", faIconName: 'arrow-left'}],
+    ['B', {direction: "Left", type: "Bank", faIconName: 'arrow-left', iconRotation: 'rotate(45deg)'}],
+    ['F', {direction: null, type: "Straight", faIconName: 'arrow-up'}],
+    ['S', {direction: null, type: "Reverse Straight", faIconName: 'arrow-down'}],
+    ['N', {direction: "Right", type: "Bank", faIconName: 'arrow-up', iconRotation: 'rotate(45deg)'}],
+    ['Y', {direction: "Right", type: "Turn", faIconName: 'arrow-right'}],
+    ['P', {direction: "Right", type: "Segnor's Loop", faIconName: 'arrow-right'}],
+    ['R', {direction: "Right", type: "Tallon Roll", faIconName: 'arrow-right'}],
+    ['D', {direction: "Right", type: "Reverse Bank", faIconName: 'arrow-right', iconRotation: 'rotate(45deg)'}],
+    ['K', {direction: null, type: "Koiogran Turn", faIconName: 'undo'}],
+    ['O', {direction: null, type: "Stationary", faIconName: 'stop'}]
 ]);
+
+const colorReference = new Map([
+    ['B', 'blue'],
+    ['W', 'while'],
+    ['R', 'red']
+])
 function nestedCrap(data, callback) {
     data.forEach(entity => {
         if (entity.type === "dir") {
@@ -33,23 +39,21 @@ export function extract(folder, callback) {
         .then(data => nestedCrap(data, callback))
 }
 
-export function buildShips() {
-    console.log(pilots);
-}
-
-
 export function covertDialToObject(dial) {
     if (dial) {
         return dial.map(man => {
             let array = man.split("");
             if(referenceMap.get(array[1])){
                 return {
+                    key: man,
                     speed: array[0],
                     bearing: {
                         type: referenceMap.get(array[1]).type,
                         direction: referenceMap.get(array[1]).direction
                     },
-                    color: array[2]
+                    color: colorReference.get(array[2]),
+                    faIconName: referenceMap.get(array[1]).faIconName,
+                    iconRotation: referenceMap.get(array[1]).iconRotation
                 };
             }else{
                 console.log(man)
