@@ -14,7 +14,7 @@ library.add(faArrowDown, faArrowUp, faArrowRight, faArrowLeft, faStop, faEmpire,
 class App extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             actions: actions,
             conditions: [],
@@ -38,7 +38,7 @@ class App extends Component {
         let factions = this.state.factions.map(faction =>
             <option key={faction.xws} value={faction.xws}>{faction.name}</option>)
         return (
-            <div>
+            <div className="content">
                 <select onChange={this.updateFaction} value={this.state.factionFilter}>
                     {factions.length === 0 ? <option/>: factions}
                 </select>

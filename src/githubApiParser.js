@@ -1,4 +1,4 @@
-import pilots from './data/pilots/galactic-empire/galactic-empire'
+
 const referenceMap = new Map([
     ['A', {direction: 'Left', type: 'Reverse Bank', faIconName: 'arrow-down', iconRotation: 'rotate(45deg)'}],
     ['E', {direction: "Left", type: "Tallon Roll", faIconName: 'arrow-left'}],
@@ -46,7 +46,7 @@ export function covertDialToObject(dial) {
             if(referenceMap.get(array[1])){
                 return {
                     key: man,
-                    speed: array[0],
+                    speed: parseInt(array[0]),
                     bearing: {
                         type: referenceMap.get(array[1]).type,
                         direction: referenceMap.get(array[1]).direction

@@ -1,5 +1,5 @@
-export const maneuverRowSize = 8;
-export const maneuverRow =['A','E','L','T','B','F','S','N','Y','P','R','D','K','O'];
+export const maneuverSpeeds = [0,1,2,3,4,5];
+export const maneuverColumns =['A','E','L','T','B','F','S','N','Y','P','R','D','K','O'];
 
 export const referenceMap = new Map([
     ['A', {direction: 'Left', type: 'Reverse Bank', faIconName: 'arrow-down', iconRotation: 'rotate(45deg)'}],
