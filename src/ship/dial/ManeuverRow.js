@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import React, {PureComponent} from 'react';
 import {maneuverColumns} from "../../config";
+import Icon from '../../Icon';
 
-class ManeuverRow extends Component {
+class ManeuverRow extends PureComponent {
 
     render() {
         let cells = [];
@@ -11,9 +11,9 @@ class ManeuverRow extends Component {
             let maneuver = this.props.maneuvers.find(man => man.key.substring(1,2) === column);
             if(maneuver){
                 cells.push(<td key={maneuver.key} title={maneuver.bearing.type + " " + maneuver.bearing.direction}>
-                    <FontAwesomeIcon
-                        icon={maneuver.faIconName}
-                        style={{color: maneuver.color, transform: maneuver.iconRotation}}/>
+                    <Icon
+                        icon={maneuver.icon}
+                        color={maneuver.color}/>
                 </td>)
             }else{
                 cells.push(<td/>)
