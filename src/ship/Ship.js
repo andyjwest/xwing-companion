@@ -20,16 +20,16 @@ class Ship extends Component {
         return (
             <div>
                 <div className='artwork-container'>
-                    <img className='artwork' src={this.props.ship.pilots[0].artwork} alt={this.props.ship.name}/>
+                    <img className='artwork' src={this.props.pilots[0].artwork} alt={this.props.name}/>
                     <div className='overlay'/>
                     <div className='text'>
-                        <Icon icon={FACTION_ICON_MAP.get(factions.find(faction => faction.name === this.props.ship.faction).xws)}/>
-                        <div>{this.props.ship.name}</div>
+                        <Icon icon={FACTION_ICON_MAP.get(factions.find(faction => faction.name === this.props.faction).xws)}/>
+                        <div>{this.props.name}</div>
                     </div>
                 </div>
-                <ActionBar actions={this.props.ship.actions}/>
-                <Dial dial={this.props.ship.dial}/>
-                <Stats stats={this.props.ship.stats}/>
+                <ActionBar actions={this.props.actions}/>
+                <Dial dial={this.props.dial}/>
+                <Stats stats={this.props.stats}/>
             </div>
         )
     }

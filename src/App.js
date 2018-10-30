@@ -5,6 +5,7 @@ import actions from './data/actions/actions.json'
 import factions from './data/factions/factions'
 import shipsData from './data/pilots/ships';
 import "../node_modules/xwing-miniatures-font/dist/xwing-miniatures.css"
+import Activation from "./activation/Activation";
 
 class App extends Component {
 
@@ -32,12 +33,10 @@ class App extends Component {
     render() {
         let factions = this.state.factions.map(faction =>
             <option key={faction.xws} value={faction.xws}>{faction.name}</option>);
+        let pilots = ['tennumb', 'dutchvander', 'mirandadoni', 'arvelcrynyd'];
         return (
             <div className="content">
-                <select onChange={this.updateFaction} value={this.state.factionFilter}>
-                    {factions.length === 0 ? <option/>: factions}
-                </select>
-                <Ships ships={this.state.ships.find(factionCollection => factionCollection.faction === this.state.factionFilter).ships}/>
+                <Activation pilotIds={pilots} factionShips={this.state.ships.find(factionCollection => factionCollection.faction === this.state.factionFilter).ships}/>
             </div>
         );
     }

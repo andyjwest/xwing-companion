@@ -4,7 +4,7 @@ import Ship from "./ship/Ship";
 class Ships extends Component {
 
     render(){
-        let pilots = this.props.ships.map(ship => <Ship key={ship.xws} ship={ship}/>)
+        let pilots = this.props.ships.map(ship => <Ship key={ship.xws} {...ship}/>)
 
         return (
             <div>

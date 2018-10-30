@@ -24,6 +24,19 @@ export const referenceMap = new Map([
     ['O', {direction: null, type: "Stationary", faIconName: 'stop'}]
 ]);
 
+export const ACTIVATION_PHASE_MAP = new Map([
+    [0, 'next-ship'],
+    [1, 'reveal-dial'],
+    [2, 'execute-maneuver'],
+    [3, 'perform-action'],
+]);
+
+export function buildPilot(pilotId, shipList){
+    let ship = shipList.find(ship => ship.pilots.some(pilot => pilot.xws === pilotId));
+    ship.pilots = [ship.pilots.find(pilot => pilot.xws === pilotId)];
+    return ship;
+}
+
 export const VALID_ICONS = [
     'agility',
     'astromech',
