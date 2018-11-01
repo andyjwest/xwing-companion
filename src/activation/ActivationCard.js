@@ -4,15 +4,6 @@ import ActivationManeuver from "./ActivationManeuver";
 
 class ActivationCard extends Component {
 
-    /*
-        Props:
-            stressed: true | false
-            ionTokenCount: int
-            maneuver: {color, speed, bearing, icon}
-            actions: [{name, icon, color, linked, pathToRule}]
-
-    */
-
     constructor(props){
         super(props);
         this.state = {

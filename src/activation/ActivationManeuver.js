@@ -4,14 +4,6 @@ import './activation-maneuver.css';
 
 class ActivationManeuver extends Component {
 
-    /*
-        {
-            icon
-            color
-            hidden
-        }
-     */
-
     render() {
         return (
             <div className='maneuver'>

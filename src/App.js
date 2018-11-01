@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import './App.css';
-import Ships from "./Ships";
 import actions from './data/actions/actions.json'
 import factions from './data/factions/factions'
 import shipsData from './data/pilots/ships';
 import "../node_modules/xwing-miniatures-font/dist/xwing-miniatures.css"
 import Activation from "./activation/Activation";
+import {createStore} from "redux";
+import xwingApp from "./reducers";
+import Builder from "./builder/Builder";
+
+const store = createStore(xwingApp);
 
 class App extends Component {
 
@@ -36,6 +40,7 @@ class App extends Component {
         let pilots = ['tennumb', 'dutchvander', 'mirandadoni', 'arvelcrynyd'];
         return (
             <div className="content">
+                <Builder />
                 <Activation pilotIds={pilots} factionShips={this.state.ships.find(factionCollection => factionCollection.faction === this.state.factionFilter).ships}/>
             </div>
         );
