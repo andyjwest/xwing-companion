@@ -10,10 +10,10 @@ const STAT_MAPPING = new Map([
         ["charge",{icon:'charge-outline', color: 'Yellow'}],
         ["doubleturretarc",{icon:'doubleturretarc', color: 'Red'}],
         ["fullfrontarc",{icon:'fullfrontarc', color: 'Red'}],
-        ["frontarc",{icon:'frontarc', color: 'Red'}],
-        ["bullseyearc",{icon:'bullseyearc', color: 'Red'}],
-        ["singleturretarc",{icon:'singleturretarc', color: 'Red'}],
-        ["reararc",{icon:'reararc', color: 'Red'}],
+        ["Front Arc",{icon:'frontarc', color: 'Red'}],
+        ["Bullseye Arc",{icon:'bullseyearc', color: 'Red'}],
+        ["Single Turret Arc",{icon:'singleturretarc', color: 'Red'}],
+        ["Rear Arc",{icon:'reararc', color: 'Red'}],
         ["weaponrangenobonus",{icon:'rangebonusindicator', color:'Red'}]
 ]);
 
@@ -23,6 +23,14 @@ class Stat extends PureComponent {
         let stat = STAT_MAPPING.get(this.props.type);
 
         if (stat) {
+            if(stat.arc){
+                let arcStat = STAT_MAPPING.get(stat.arc);
+                if(arcStat){
+                    return <Icon icon={arcStat.icon} color={arcStat.color}/>;
+                }
+                console.error("This arc is not mapped!");
+                console.error(stat);
+            }
             return <Icon icon={stat.icon} color={stat.color}/>;
         }
         console.error("This stat is not mapped!");
@@ -32,9 +40,9 @@ class Stat extends PureComponent {
 
     render() {
         return (
-            <div>
+            <div className='stat'>
                 {this.buildStatIcon()}
-                <span style={{color: 'white'}}>{this.props.value}</span>
+                <div style={{color: 'white'}}>{this.props.value}</div>
             </div>
         );
     }

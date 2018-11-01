@@ -1,60 +1,104 @@
 .artwork-container{
     position: relative;
     text-align: center;
+    width: 100%;
 }
 
-.artwork-text {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-    color: white;
+.ship-card-header{
+    position: relative;
+    text-align: center;
+    width: 100%;
+    min-height: 3em;
 }
 
 .artwork {
-    opacity: 1;
+    opacity: .5;
     display: block;
     width: 100%;
     height: auto;
-    transition: .5s ease;
-    backface-visibility: hidden;
 }
 
-.overlay {
+.dial {
+    color: white;
+}
+
+.initiative {
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: black;
+    margin: 5px;
+    color: orange;
+    font-size: 2em;
 }
 
-.artwork-container:hover .overlay {
-    opacity: .5;
+/* Bottom left text */
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
 }
 
-.artwork-container:hover .text {
-    opacity: 1;
-}
-.text {
-    opacity: 0;
-    transition: .5s ease;
+/* Top left text */
+.top-left {
+    position: absolute;
     color: white;
-    font-size: 40px;
+    top: 8px;
+    left: 16px;
+}
+
+.center-left {
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 16px;
+    transform: translate(0, -50%);
+}
+
+.center-right {
     position: absolute;
     top: 50%;
+    right: 16px;
+    transform: translate(0, -50%);
+}
+
+.top-center {
+    position: absolute;
+    color: white;
+    top: 8px;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
+    transform: translate(-50%, 0);
+}
+
+.bottom-center {
+    position: absolute;
+    color: white;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 12px;
+}
+
+.stat {
+    display: inline-block;
+    margin: 5px;
+}
+
+/* Top right text */
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
 }
 
 @media screen and (max-width: 400px){
-    .text{
-        font-size: 8vm;
+    .artwork-container{
+        font-size: 1vm;
     }
 }

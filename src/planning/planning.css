@@ -1,0 +1,42 @@
+
+td{
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.artwork-container{
+    position: relative;
+    text-align: center;
+    width: 100%;
+    color: white;
+    background-color: #111111;
+}
+
+.artwork {
+    opacity: .5;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.ship-card-header {
+    display: flex;
+}
+
+.initiative {
+    font-size: 40px;
+    color: orange;
+}
+
+.pilot-name {
+    font-size: 40px;
+}

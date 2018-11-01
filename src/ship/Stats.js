@@ -5,8 +5,8 @@ class Stats extends PureComponent {
 
     render() {
         return (
-            <div>
-                {this.props.stats.map(stat => <Stat {...stat}/>)}
+            <div className='bottom-center'>
+                {this.props.stats.map(stat => <Stat key={stat.xws} {...stat}/>)}
             </div>
         );
     }

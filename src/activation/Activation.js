@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ActivationCard from "./ActivationCard";
-import {ACTIVATION_PHASE_MAP, buildPilot} from "../config";
 import './activation.css';
 
 class Activation extends Component {
@@ -10,7 +9,6 @@ class Activation extends Component {
         this.state = {
             activeShip: {},
             activeShipPhase: 0,
-            pilots: this.props.pilotIds.map(pilotId => buildPilot(pilotId, this.props.factionShips)).sort((a,b) => a.pilots[0].initiative > b.pilots[0].initiative)
         }
     }
 
@@ -22,7 +20,7 @@ class Activation extends Component {
         return (
             <div>
                 <div>
-                    {this.state.pilots.map(pilot => <ActivationCard {...pilot}/>)}
+                    {this.props.pilots.map(pilot => <ActivationCard key={pilot.xws} {...pilot}/>)}
                 </div>
                 <div className={'rule-reference'}></div>
             </div>
