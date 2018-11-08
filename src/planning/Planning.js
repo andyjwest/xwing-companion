@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
 import './planning.css';
-import classnames from "classnames";
 import Dial from "../ship/dial/Dial";
 import Icon from "../Icon";
+import ActionBar from "../ship/ActionBar";
+import classNames from 'classnames';
 
 class Planning extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            maneuver: {}
+            maneuver: {},
+            locked:false
         };
         this.updateManeuver = this.updateManeuver.bind(this);
+        this.lockManeuver = this.lockManeuver.bind(this);
+        this.resetManeuver = this.resetManeuver.bind(this);
     }
 
     updateManeuver(maneuver) {
@@ -19,22 +23,44 @@ class Planning extends Component {
         this.setState({maneuver: maneuver})
     }
 
+    lockManeuver(){
+        console.log("need to add this to the redux state");
+        console.log(this.state.maneuver);
+    }
+
+    resetManeuver(){
+        this.setState({maneuver: {}})
+    }
+
     render() {
+        let pilot = this.props.pilots[0];
+
         return (
-            <div className='artwork-container'>
-                <img className='artwork' src={this.props.pilots[0].artwork}/>
-                <div className='overlay'>
-                    <div className='ship-card-header'>
-                        <div className='initiative'>PS: {this.props.pilots[0].initiative}</div>
-                        <div className='pilot-name'>{this.props.pilots[0].name}</div>
-                    </div>
-                    <div style={{display: 'flex'}}>
-                        <Dial style={{flexGrow:2}} dial={this.props.dial} updateSelection={this.updateManeuver}/>
-                        <div>
+            <div>
+                <div className='artwork-container'>
+                    <img className='artwork' src={pilot.artwork}/>
+                    <div className='overlay'>
+                        <div className={classNames('ship-card-header', 'full-flex')}>
+                            <div className='initiative'>{pilot.initiative}</div>
+                            <div style={{flexGrow: 3}}>
+                                <div>{pilot.name}</div>
+                                <div style={{fontSize: '.4em'}}>{pilot.caption}</div>
+                            </div>
+                        </div>
+                        <div className='maneuver'>
                             {this.state.maneuver.speed} <Icon icon={this.state.maneuver.icon}
                                                               color={this.state.maneuver.color}/>
                         </div>
                     </div>
+                </div>
+                <div className='full-flex'>
+                    <div className='flex-column'>
+                        <button onClick={this.lockManeuver}>Lock</button>
+                        <button onClick={this.resetManeuver}>Reset</button>
+                    </div>
+                    <Dial dial={this.props.dial}
+                          updateSelection={this.updateManeuver}/>
+                    <ActionBar actions={this.props.actions}/>
                 </div>
             </div>
         )

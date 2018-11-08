@@ -1,16 +1,7 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import Icon from '../../Icon';
 
-class ManeuverRow extends Component {
-
-    constructor(props) {
-        super(props);
-        this.updateManeuver = this.updateManeuver.bind(this);
-    }
-
-    updateManeuver(maneuver){
-        this.props.updateSelection(maneuver);
-    }
+class ManeuverRow extends PureComponent {
 
     render() {
         let cells = [<td key={this.props.maneuvers[0].speed + 'label'}>{this.props.maneuvers[0].speed}</td>];
@@ -20,7 +11,7 @@ class ManeuverRow extends Component {
             if (maneuver) {
                 cells.push(
                     <td key={maneuver.bearing.type + maneuver.bearing.direction}
-                        title={maneuver.bearing.type + " " + maneuver.bearing.direction} onClick={()=> this.updateManeuver(maneuver)}>
+                        title={maneuver.bearing.type + " " + maneuver.bearing.direction} onClick={()=> this.props.updateSelection(maneuver)}>
                         <Icon
                             icon={maneuver.icon}
                             color={maneuver.color}/>

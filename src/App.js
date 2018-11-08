@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Header from './Header'
+import HeaderRoute from './Header'
 import Planning from './planning/Planning'
 import actions from './data/actions/actions.json'
 import factions from './data/factions/factions'
@@ -8,6 +8,7 @@ import shipsData from './data/pilots/ships';
 import {BrowserRouter as Router, Route, Link, NavLink} from "react-router-dom";
 import "../node_modules/xwing-miniatures-font/dist/xwing-miniatures.css"
 import Activation from "./activation/Activation";
+import System from './system/System';
 import {createStore} from "redux";
 import xwingApp from "./reducers";
 import Builder from "./builder/Builder";
@@ -45,24 +46,18 @@ class App extends Component {
         return (
             <Router>
                 <div>
-                    <Header />
+                    <HeaderRoute />
+                    <div className="content">
                     <Route exact path="/"/>
-                    <Route exact path="/planning" render={()=>{
-                        return <div>
-                            {pilots.map(pilot => <Planning {...pilot}/>)}
-                        </div>
-                    }}/>
-                    <Route exact path="/system"/>
-                    <Route exact path="/activation" render={()=>{
-                        return (
-                            <div className="content">
-                                <Activation pilots={pilots} />
-                            </div>
-                        );
-                    }}/>
+                        <Route exact path="/planning"
+                               render={()=><div>{pilots.map(pilot => <Planning key={pilots.indexOf(pilot)} {...pilot}/>)}</div>}/>
+                    <Route exact path="/system"
+                           render={()=><div>{pilots.map(pilot => <System key={pilots.indexOf(pilot)} {...pilot}/>)}</div>}/>
+                    <Route exact path="/activation" render={()=><Activation pilots={pilots} />}/>
                     <Route exact path="/engagement"/>
                     <Route exact path="/end-phase"/>
                     <Route exact path="/builder" render={()=> <Builder />}/>
+                    </div>
                 </div>
             </Router>
         );

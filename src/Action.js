@@ -19,11 +19,11 @@ class ActionBar extends Component {
                     console.error("This action is not mapped!");
                     console.error(linkedIcon);
                 }
-                return <div key={this.props.xws}>
+                return <div key={this.props.xws} style={{flexGrow:1}} >
                     {iconTag} <Icon icon="linked" color="white"/> <Icon icon={linkedIcon.xws} color={this.props.linked.difficulty}/>
                 </div>
             }
-            return <div key={this.props.xws}>{iconTag}</div>
+            return <div key={this.props.xws} style={{flexGrow:1}} >{iconTag}</div>
         }
         console.error("This action is not mapped!");
         console.error(this.props);

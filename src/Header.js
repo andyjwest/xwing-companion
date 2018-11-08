@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 import './header.css'
 
 class Header extends PureComponent {
@@ -17,4 +17,6 @@ class Header extends PureComponent {
     }
 }
 
-export default Header;
+const HeaderRoute = withRouter(Header);
+
+export default HeaderRoute;
