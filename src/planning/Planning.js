@@ -4,6 +4,7 @@ import Dial from "../ship/dial/Dial";
 import Icon from "../Icon";
 import ActionBar from "../ship/ActionBar";
 import classNames from 'classnames';
+import ShipIcon from "../ShipIcon";
 
 class Planning extends Component {
 
@@ -11,16 +12,23 @@ class Planning extends Component {
         super(props);
         this.state = {
             maneuver: {},
-            locked:false
+            locked: false,
+            closed: true
+
         };
         this.updateManeuver = this.updateManeuver.bind(this);
         this.lockManeuver = this.lockManeuver.bind(this);
         this.resetManeuver = this.resetManeuver.bind(this);
+        this.toggle = this.toggle.bind(this);
     }
 
     updateManeuver(maneuver) {
         console.log(maneuver);
         this.setState({maneuver: maneuver})
+    }
+
+    toggle(){
+        this.setState({closed:!(this.state.closed)});
     }
 
     lockManeuver(){
@@ -35,10 +43,22 @@ class Planning extends Component {
     render() {
         let pilot = this.props.pilots[0];
 
+        if(this.state.closed){
+            return (
+                <div className='planning full-flex ship-card-header' onClick={this.toggle}>
+                    <div className='initiative header-icon'>{pilot.initiative}</div>
+                    <div style={{flexGrow: 3}}>{pilot.name}</div>
+                    <div className='header-icon'>{this.state.maneuver.speed}</div>
+                    <Icon className='header-icon' icon={this.state.maneuver.icon}
+                          color={this.state.maneuver.color}/>
+                    <ShipIcon className='header-icon' shipId={this.props.xws}/>
+                </div>
+            )
+        }
         return (
-            <div>
+            <div className='planning' onClick={this.toggle}>
                 <div className='artwork-container'>
-                    <img className='artwork' src={pilot.artwork}/>
+                    <img className='artwork' style={{display: 'none'}} src={pilot.artwork}/>
                     <div className='overlay'>
                         <div className={classNames('ship-card-header', 'full-flex')}>
                             <div className='initiative'>{pilot.initiative}</div>

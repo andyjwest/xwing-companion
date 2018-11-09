@@ -1,4 +1,7 @@
-
+.planning {
+    background-color: #2d3142;
+    margin: 10px;;
+}
 td{
     width: 30px;
     height: 30px;
@@ -25,7 +28,6 @@ td{
     text-align: center;
     width: 100%;
     color: white;
-    background-color: #111111;
 }
 
 .artwork {
@@ -53,6 +55,12 @@ td{
 
 .initiative {
     color: orange;
+}
+
+.header-icon {
+    height: 50px;
+    width: 50px;
+    margin: 2px;
 }
 
 .dial {

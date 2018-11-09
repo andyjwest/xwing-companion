@@ -3,7 +3,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #1D1E2C;
+    background-color: #2d3142;
 }
 
 li {
@@ -20,12 +20,8 @@ li a {
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-    background-color: #111;
+    background-color: #bfc0c0;
 }
 li a.selected{
-    background-color: #59656F;
-}
-
-body {
-    background-color: #1D1E2C;
+    background-color: #e09f3e;
 }
