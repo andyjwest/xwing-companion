@@ -10,7 +10,7 @@ import "../node_modules/xwing-miniatures-font/dist/xwing-miniatures.css"
 import Activation from "./activation/Activation";
 import System from './system/System';
 import {createStore} from "redux";
-import xwingApp from "./reducers";
+import xwingApp from "./reducers/index";
 import Builder from "./builder/Builder";
 import {buildPilot} from "./config";
 import PlanningContainer from "./planning/PlanningContainer";

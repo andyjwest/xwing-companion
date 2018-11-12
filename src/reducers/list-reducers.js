@@ -1,10 +1,6 @@
-import {ADD_SHIP, REMOVE_SHIP} from "./actions";
+import {ADD_SHIP, REMOVE_SHIP} from "../actions/actions";
 
-const initialState = {
-    ships: []
-};
-
-export default function xwingApp(state = initialState, action) {
+const list = (state = [], action) => {
     switch (action.type) {
         case ADD_SHIP:
             return Object.assign({}, state, {
@@ -18,3 +14,4 @@ export default function xwingApp(state = initialState, action) {
     return state;
 }
 
+export default list;

@@ -1,6 +1,5 @@
 .planning {
     background-color: #2d3142;
-    margin: 10px;;
 }
 td{
     width: 30px;
@@ -68,8 +67,13 @@ td{
     height: 50px;
     width: 50px;
     margin: 2px;
+    /*flex-grow: 1;*/
 }
 
 .dial {
     margin: auto;
+}
+
+.flex-item {
+    flex-grow: 1;
 }

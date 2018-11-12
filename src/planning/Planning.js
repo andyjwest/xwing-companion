@@ -5,6 +5,7 @@ import Icon from "../Icon";
 import ActionBar from "../ship/ActionBar";
 import classNames from 'classnames';
 import ShipIcon from "../ShipIcon";
+import {ManeuverSelection} from "./ManeuverSelection";
 
 class Planning extends Component {
 
@@ -48,18 +49,17 @@ class Planning extends Component {
                 <div className='planning full-flex ship-card-header' onClick={this.toggle}>
                     <div className='initiative header-icon'>{pilot.initiative}</div>
                     <div style={{flexGrow: 3}}>{pilot.name}</div>
-                    <div className='header-icon'>{this.state.maneuver.speed}</div>
-                    <Icon className='header-icon' icon={this.state.maneuver.icon}
-                          color={this.state.maneuver.color}/>
                     <ShipIcon className='header-icon' shipId={this.props.xws}/>
                 </div>
-                <div className='artwork-container'>
-                    <img className='artwork' src={pilot.artwork}/>
+                <img className='artwork' src={pilot.artwork}/>
+                <div className='full-flex'>
+                    <button className='flex-item' onClick={this.lockManeuver}>Lock</button>
+                    <ManeuverSelection {...this.state.maneuver}/>
+                    <button className='flex-item' onClick={this.resetManeuver}>Reset</button>
                 </div>
                 <div className='full-flex'>
                     <div className='flex-column'>
-                        <button onClick={this.lockManeuver}>Lock</button>
-                        <button onClick={this.resetManeuver}>Reset</button>
+
                     </div>
                     <Dial dial={this.props.dial}
                           updateSelection={this.updateManeuver}/>
