@@ -13,6 +13,7 @@ import {createStore} from "redux";
 import xwingApp from "./reducers";
 import Builder from "./builder/Builder";
 import {buildPilot} from "./config";
+import PlanningContainer from "./planning/PlanningContainer";
 
 const store = createStore(xwingApp);
 
@@ -49,8 +50,7 @@ class App extends Component {
                     <HeaderRoute />
                     <div className="content">
                     <Route exact path="/"/>
-                        <Route exact path="/planning"
-                               render={()=><div>{pilots.map(pilot => <Planning key={pilots.indexOf(pilot)} {...pilot}/>)}</div>}/>
+                        <Route exact path="/planning" render={()=> <PlanningContainer ships={pilots}/>} />
                     <Route exact path="/system"
                            render={()=><div>{pilots.map(pilot => <System key={pilots.indexOf(pilot)} {...pilot}/>)}</div>}/>
                     <Route exact path="/activation" render={()=><Activation pilots={pilots} />}/>

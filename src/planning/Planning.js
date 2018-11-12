@@ -43,8 +43,8 @@ class Planning extends Component {
     render() {
         let pilot = this.props.pilots[0];
 
-        if(this.state.closed){
-            return (
+        return (
+            <div className='planning'>
                 <div className='planning full-flex ship-card-header' onClick={this.toggle}>
                     <div className='initiative header-icon'>{pilot.initiative}</div>
                     <div style={{flexGrow: 3}}>{pilot.name}</div>
@@ -53,25 +53,8 @@ class Planning extends Component {
                           color={this.state.maneuver.color}/>
                     <ShipIcon className='header-icon' shipId={this.props.xws}/>
                 </div>
-            )
-        }
-        return (
-            <div className='planning' onClick={this.toggle}>
                 <div className='artwork-container'>
-                    <img className='artwork' style={{display: 'none'}} src={pilot.artwork}/>
-                    <div className='overlay'>
-                        <div className={classNames('ship-card-header', 'full-flex')}>
-                            <div className='initiative'>{pilot.initiative}</div>
-                            <div style={{flexGrow: 3}}>
-                                <div>{pilot.name}</div>
-                                <div style={{fontSize: '.4em'}}>{pilot.caption}</div>
-                            </div>
-                        </div>
-                        <div className='maneuver'>
-                            {this.state.maneuver.speed} <Icon icon={this.state.maneuver.icon}
-                                                              color={this.state.maneuver.color}/>
-                        </div>
-                    </div>
+                    <img className='artwork' src={pilot.artwork}/>
                 </div>
                 <div className='full-flex'>
                     <div className='flex-column'>

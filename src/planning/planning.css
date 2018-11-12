@@ -53,6 +53,13 @@ td{
     justify-content: center;
 }
 
+.planning-header-card{
+    background-color: grey;
+    flex-grow: 1;
+    margin: 5px;
+    padding: 2px;
+}
+
 .initiative {
     color: orange;
 }
