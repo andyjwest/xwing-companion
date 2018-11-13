@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './planning.css';
 import ShipIcon from "../ShipIcon";
-import Icon from "../Icon";
 
 class PlanningHeaderItem extends Component {
 
@@ -15,10 +14,6 @@ class PlanningHeaderItem extends Component {
                         <div>{pilot.name}</div>
                         <ShipIcon className='header-icon' shipId={this.props.xws}/>
                     </div>
-                    {/*<div className='maneuver'>*/}
-                        {/*{this.props.maneuver.speed} <Icon icon={this.props.maneuver.icon}*/}
-                                                          {/*color={this.props.maneuver.color}/>*/}
-                    {/*</div>*/}
                 </div>
             </div>
         );

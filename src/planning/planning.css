@@ -30,7 +30,6 @@ td{
 }
 
 .artwork {
-    opacity: .5;
     display: block;
     width: 100%;
     height: auto;
@@ -63,11 +62,17 @@ td{
     color: orange;
 }
 
+.maneuver-bar{
+    min-height: 50px;
+    color: white;
+    font-size: 40px;
+    margin: 10px 0 ;
+}
+
 .header-icon {
     height: 50px;
     width: 50px;
     margin: 2px;
-    /*flex-grow: 1;*/
 }
 
 .dial {

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import './planning.css';
 import Dial from "../ship/dial/Dial";
-import Icon from "../Icon";
 import ActionBar from "../ship/ActionBar";
-import classNames from 'classnames';
 import ShipIcon from "../ShipIcon";
 import {ManeuverSelection} from "./ManeuverSelection";
+import ReferenceSection from "./ReferenceSection";
 
 class Planning extends Component {
 
@@ -14,8 +13,8 @@ class Planning extends Component {
         this.state = {
             maneuver: {},
             locked: false,
-            closed: true
-
+            closed: true,
+            selectedRule:'shipAbility'
         };
         this.updateManeuver = this.updateManeuver.bind(this);
         this.lockManeuver = this.lockManeuver.bind(this);
@@ -52,7 +51,7 @@ class Planning extends Component {
                     <ShipIcon className='header-icon' shipId={this.props.xws}/>
                 </div>
                 <img className='artwork' src={pilot.artwork}/>
-                <div className='full-flex'>
+                <div className='maneuver-bar full-flex'>
                     <button className='flex-item' onClick={this.lockManeuver}>Lock</button>
                     <ManeuverSelection {...this.state.maneuver}/>
                     <button className='flex-item' onClick={this.resetManeuver}>Reset</button>
@@ -65,6 +64,7 @@ class Planning extends Component {
                           updateSelection={this.updateManeuver}/>
                     <ActionBar actions={this.props.actions}/>
                 </div>
+                <ReferenceSection {...pilot}/>
             </div>
         )
     }
