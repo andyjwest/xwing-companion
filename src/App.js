@@ -14,6 +14,7 @@ import xwingApp from "./reducers/index";
 import Builder from "./builder/Builder";
 import {buildPilot} from "./config";
 import PlanningContainer from "./planning/PlanningContainer";
+import { Provider } from 'react-redux'
 
 const store = createStore(xwingApp);
 
@@ -45,21 +46,23 @@ class App extends Component {
             .map(pilotId => buildPilot(pilotId, this.state.ships.find(factionCollection => factionCollection.faction === this.state.factionFilter).ships))
             .sort((a,b) => a.pilots[0].initiative - b.pilots[0].initiative);
         return (
-            <Router>
-                <div>
-                    <HeaderRoute />
-                    <div className="content">
-                    <Route exact path="/"/>
-                        <Route exact path="/planning" render={()=> <PlanningContainer ships={pilots}/>} />
-                    <Route exact path="/system"
-                           render={()=><div>{pilots.map(pilot => <System key={pilots.indexOf(pilot)} {...pilot}/>)}</div>}/>
-                    <Route exact path="/activation" render={()=><Activation pilots={pilots} />}/>
-                    <Route exact path="/engagement"/>
-                    <Route exact path="/end-phase"/>
-                    <Route exact path="/builder" render={()=> <Builder />}/>
+            <Provider store={store}>
+                <Router>
+                    <div>
+                        <HeaderRoute />
+                        <div className="content">
+                            <Route exact path="/"/>
+                            <Route exact path="/planning" render={()=> <PlanningContainer ships={pilots}/>} />
+                            <Route exact path="/system"
+                                   render={()=><div>{pilots.map(pilot => <System key={pilots.indexOf(pilot)} {...pilot}/>)}</div>}/>
+                            <Route exact path="/activation" render={()=><Activation pilots={pilots} />}/>
+                            <Route exact path="/engagement"/>
+                            <Route exact path="/end-phase"/>
+                            <Route exact path="/builder" render={()=> <Builder />}/>
+                        </div>
                     </div>
-                </div>
-            </Router>
+                </Router>
+            </Provider>
         );
     }
 }
